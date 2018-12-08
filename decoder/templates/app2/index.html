@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet"  href="{% static "app2/css/project.css" %}"/>
+	<title>project</title>
+</head>
+<body>
+
+	<h1>Welcome to the Decoding Page</h1>
+	{{insert_me}}
+	<h2>We're a start-up that does something</h2>
+
+	
+	<h2>Sign up for our upcoming launch!</h2>
+
+		<form class="DECODE"  method="POST" action="{% url 'thanks' %}">
+			{% csrf_token %}
+			<label for="base64">B64_ENCODED</label><br>
+			<input type="textarea" name="base64" value="" required><br>
+		
+			<input id="sub" type="submit" name="" value="SUBMIT FOR DECODING!!" >
+		</form>
+		<div class ="djangotwo">
+		{% if access_records %}
+
+		<table>
+			<thead>
+				<th>site name</th>
+				<th>data acessed</th>
+			</thead>
+
+		{% for acc in access_records %}
+		<tr>
+			<td>{{acc.name}}</td>
+			<td>{{acc.date}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+		{% else %}
+			<p>no access record found</p>
+			{% endif %}
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+
+.btn button{
+	height: 100px;
+	width:100px;
+	background-color: gray;
+	text-align: center;
+	margin : 1px;
+	border : 4px solid black;
+	border-radius: 50%;
+
+
+}
