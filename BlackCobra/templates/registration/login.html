@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BLACK COBRA | Login</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center animated fadeInDownBig">
+        <img alt="image" class="rounded-circle" width="80%" src="{% static 'img/logo.png' %}"/>
+    </div>
+
+
+    <h1 class="text-center animated fadeInRightBig">The Genie Of Encryption</h1>
+    <div class="align-baseline middle-box text-center loginscreen animated fadeInUpBig">
+        
+    <div>
+        {% block content %}
+        {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+            {% else %}
+                <p>Please Login with an Account</p>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+            <input required type="text"  name="username" class="form-control mb-4" placeholder="Username">
+            <input required type="password"  name="password" class="form-control mb-4" placeholder="Password">
+            <button class="btn btn-info btn-block my-4" type="submit" value="login" >login</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+
+        </form>
+        {% endblock %}
+        
+    </div>
+
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src={% static "js/jquery-3.1.1.min.js" %} ></script>
+    <script src={% static "js/popper.min.js" %} ></script>
+    <script src={% static "js/bootstrap.js" %} ></script>
+   	<!--<script src={% static "js/ud/animeNode.js" %} ></script>-->
+    
+</body>
+
+</html>
+
